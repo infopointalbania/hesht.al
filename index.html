@@ -7,84 +7,115 @@
 <title>Hesht Albania</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #000;
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
 }
 
-.flag-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle, #222, #000);
+
+.flag{
+    width:100vw;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+    background-image:url("images/flag.jpg");
+    background-size:cover;
+    background-position:center;
+
+    animation:wave 5s infinite ease-in-out;
 }
 
-.flag {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    background: #e41e25;
-    overflow: hidden;
-    animation: wave 4s infinite ease-in-out;
-}
 
-.flag::before {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 100%;
+/* drita mbi pëlhurë */
+.flag::before{
+    content:"";
+    position:absolute;
+    inset:-20%;
     background:
     linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.25),
-        transparent
+        100deg,
+        transparent 35%,
+        rgba(255,255,255,.25) 50%,
+        transparent 65%
     );
-    animation: shine 3s infinite linear;
+
+    animation:light 6s infinite linear;
 }
 
-.eagle {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size: 35vw;
-    color:#111;
-    filter: drop-shadow(0 0 20px black);
+
+/* hije valësh */
+.flag::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,.20) 0px,
+        transparent 35px,
+        rgba(0,0,0,.20) 70px
+    );
+
+    mix-blend-mode:multiply;
+
+    animation:cloth 3s infinite linear;
 }
 
-@keyframes wave {
-    0% {
-        transform: perspective(800px) rotateY(-5deg);
-    }
-    50% {
-        transform: perspective(800px) rotateY(5deg);
-    }
-    100% {
-        transform: perspective(800px) rotateY(-5deg);
-    }
+
+@keyframes wave{
+
+0%,100%{
+    transform:
+    perspective(1000px)
+    rotateY(-8deg)
+    scale(1.05);
 }
 
-@keyframes shine {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(100%);
-    }
+50%{
+    transform:
+    perspective(1000px)
+    rotateY(8deg)
+    scale(1.08);
 }
+
+}
+
+
+@keyframes light{
+
+from{
+    transform:translateX(-100%);
+}
+
+to{
+    transform:translateX(100%);
+}
+
+}
+
+
+@keyframes cloth{
+
+from{
+    transform:translateX(-30px);
+}
+
+to{
+    transform:translateX(30px);
+}
+
+}
+
 
 </style>
 
@@ -92,11 +123,7 @@ html, body {
 
 <body>
 
-<div class="flag-container">
-    <div class="flag">
-        <div class="eagle">🦅</div>
-    </div>
-</div>
+<div class="flag"></div>
 
 </body>
 </html>
